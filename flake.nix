@@ -133,6 +133,7 @@
 
             system.extraSystemBuilderCmds = ''
               ln -s '${./.}' "$out/flake"
+              ln -s '${unsafeDiscardStringContext (storePath "/run/current-system")}' "$out/builder"
             '' + (if ! (inputs.self ? rev) then ''
               echo "Cannot switch to a dirty configuration"
               exit 1
